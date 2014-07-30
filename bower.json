@@ -1,0 +1,22 @@
+{
+  "name": "ng-amd",
+  "version": "1.6.0",
+  "main": "dist/angular-amd.min.js",
+  "ignore": [
+        "src",
+        "tmp",
+        ".bowerrc",
+        ".gitignore",
+        ".travis.yml",
+        "bower.json",
+        "Gruntfile.js",
+        "karma.conf.js",
+        "index.html",
+        "package.json"
+    ],
+  "devDependencies": {
+    "angular": "1.2.12",
+    "angular-mocks": "1.2.12"
+  },
+  "dependencies": {}
+}
