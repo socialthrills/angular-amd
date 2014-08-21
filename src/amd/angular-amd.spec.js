@@ -224,6 +224,31 @@ describe('angular-amd', function () {
             expect(hasModule('module16')).not.toBe(null);
         });
 
+        it('bower: should import module dependencies with ES6 statments', function () {
+            var external;
+            amd.module('ext', []).then(function (module) {
+                external = module;
+
+                expect(angular.module('ext') === module).toBe(true);
+            });
+
+            amd.module('module15', [
+                'module ext from "bower:external"'
+            ]).then(function (module) {
+                expect(module._imports.external === external).toBe(true);
+            });
+
+            amd.module('module16', [
+                'module ext from "bower:external"'
+            ]).then(function (module) {
+                expect(module._imports.external === external).toBe(true);
+            });
+
+            amd.$scope.$digest();
+            expect(hasModule('module15')).not.toBe(null);
+            expect(hasModule('module16')).not.toBe(null);
+        });
+
         it('should import symbols from modules', function () {
             amd.module('module7', []).value('name', 'Scrooge');
             amd.module('module6', []).value('version', 'six').value('type', 'A');

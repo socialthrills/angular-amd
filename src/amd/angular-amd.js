@@ -41,7 +41,7 @@ function requestModule(module) {
 
     console.log(module.name);
 
-    if (/^app/.test(module.name)) {
+    if (/app\./.test(module.name)) {
         node.src = angular.amd.basePath + module.name.replace(/\./g, '/').replace(/\.js$/, '') + '.js';
     } else {
         node.src = module.name.replace(/^bower:(.*)$/, "vendor/$1/src/index.js");
