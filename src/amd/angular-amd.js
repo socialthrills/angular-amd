@@ -39,8 +39,11 @@ function requestModule(module) {
         throw new Error('Error loading module "' + module.name + '" with src "' + err.srcElement.src + '"');
     }, false);
 
+
     if (/bower/.test(module.name)) {
-        node.src = module.name.replace(/bower:(.*)$/, "vendor/$1/src/index.js");
+//        throw new Error(JSON.stringify(module));
+        node.src = module.name.replace(/bower\.(.*)$/, "base/vendor/$1/src/index.js");
+        module.name = module.name.replace(/bower\.(.*)$/, "$1");
     } else {
         node.src = angular.amd.basePath + module.name.replace(/\./g, '/').replace(/\.js$/, '') + '.js';
     }
