@@ -39,12 +39,10 @@ function requestModule(module) {
         throw new Error('Error loading module "' + module.name + '" with src "' + err.srcElement.src + '"');
     }, false);
 
-    console.log(module.name);
-
     if (/app\./.test(module.name)) {
         node.src = angular.amd.basePath + module.name.replace(/\./g, '/').replace(/\.js$/, '') + '.js';
     } else {
-        node.src = module.name.replace(/^bower:(.*)$/, "vendor/$1/src/index.js");
+        node.src = module.name.replace(/bower:(.*)$/, "vendor/$1/src/index.js");
     }
 
     window.document.body.appendChild(node);
