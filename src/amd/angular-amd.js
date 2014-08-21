@@ -39,7 +39,12 @@ function requestModule(module) {
         throw new Error('Error loading module "' + module.name + '" with src "' + err.srcElement.src + '"');
     }, false);
 
-    node.src = angular.amd.basePath + module.name.replace(/\./g, '/').replace(/\.js$/, '') + '.js';
+    if(/^app/).test(module.name) {
+        node.src = angular.amd.basePath + module.name.replace(/\./g, '/').replace(/\.js$/, '') + '.js';
+    } else {
+        node.src = module.name.replace(/^bower:(.*)$/, "vendor/$1/src/index.js");
+    }
+
     window.document.body.appendChild(node);
 }
 
@@ -49,7 +54,7 @@ function importDependencies(moduleName, dependencies) {
 
     dependencyMap[moduleName] = dependencies;
     dependencies.forEach(function (dependency) {
-        exists = !! modulesRegistry.get(dependency.module.alias);
+        exists = !!modulesRegistry.get(dependency.module.alias);
         modulesRegistry.add(dependency.module.alias);
 
         if (!hasModule(dependency.module.alias) && !exists) {
