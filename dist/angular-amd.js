@@ -1,4 +1,4 @@
-/*! angular-amd - v1.6.0 - 2014-08-21
+/*! angular-amd - v1.6.0 - 2014-08-22
 * http://www.ef.com
 * Copyright (c) 2014 EF Education First; Licensed ,  */
 (function (window, angular) {
@@ -150,7 +150,9 @@ function requestModule(module) {
     }, false);
 
     if (/bower/.test(module.name)) {
-        node.src = module.name.replace(/bower:(.*)$/, "vendor/$1/src/index.js");
+        //        throw new Error(JSON.stringify(module));
+        node.src = module.name.replace(/bower\.(.*)$/, "vendor/$1/src/index.js");
+        module.name = module.name.replace(/bower\.(.*)$/, "$1");
     } else {
         node.src = angular.amd.basePath + module.name.replace(/\./g, '/').replace(/\.js$/, '') + '.js';
     }
