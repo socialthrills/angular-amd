@@ -240,7 +240,7 @@ function start(options) {
         uglifyJS = require("uglify-js"),
         sourceFiles,
         loadOrder,
-        res;
+        res = '';
 
     if (!options.sourceFolder) {
         throw new Error('Option "sourceFolder" must be provided.');
