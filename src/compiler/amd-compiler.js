@@ -126,8 +126,6 @@ function compileLoadOrder(fs, baseDir, jsFiles) {
 
     // filters files, collect modules and indexes module properties (isAmd, parsed dependencies, file name)
     jsFiles.forEach(function (file) {
-        console.log(file);
-                    
         var data = fs.readFileSync(file, 'utf8'),
             module = data.toString().replace(/(?:\/\*(?:[\s\S]*?)\*\/)|(?:([\s;])+\/\/(?:.*)$)/gm, '$1').match(moduleMatcher),
             name;
@@ -260,7 +258,6 @@ function start(options) {
             options.sourceFolder = options.sourceFolder.replace(/\//g, '\\');
         }
 
-        console.log('Loading files from sourceFolder: %s', options.sourceFolder)
         sourceFiles = collectFiles(fs, options.sourceFolder, options.filter);
     }
 
